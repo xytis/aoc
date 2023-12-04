@@ -3,21 +3,21 @@ defmodule AOC2023.D01Test do
   doctest AOC2023.D01
 
   @test_p1 <<"""
-  1abc2
-  pqr3stu8vwx
-  a1b2c3d4e5f
-  treb7uchet
-  """>>
+             1abc2
+             pqr3stu8vwx
+             a1b2c3d4e5f
+             treb7uchet
+             """>>
 
   @test_p2 <<"""
-  two1nine
-  eightwothree
-  abcone2threexyz
-  xtwone3four
-  4nineeightseven2
-  zoneight234
-  7pqrstsixteen
-  """>>
+             two1nine
+             eightwothree
+             abcone2threexyz
+             xtwone3four
+             4nineeightseven2
+             zoneight234
+             7pqrstsixteen
+             """>>
 
   test "part1 on test data" do
     assert AOC2023.D01.part1(@test_p1) == Enum.sum([12, 38, 15, 77])
