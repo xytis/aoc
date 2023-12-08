@@ -1,0 +1,24 @@
+defmodule AOC2023.<%= @name %> do
+  @moduledoc """
+  Documentation for `AOC2023.<%= @name %>`.
+  """
+
+  def solve() do
+    IO.puts("Day <%= @day %>")
+    input = read_input()
+    IO.puts("Part 1: #{part1(input)}")
+    IO.puts("Part 2: #{part2(input)}")
+  end
+
+  def read_input() do
+    File.read!("<%= @test_input_name %>")
+  end
+
+  def part1(input) do
+    1
+  end
+
+  def part2(input) do
+    2
+  end
+end
