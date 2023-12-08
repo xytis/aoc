@@ -14,9 +14,10 @@ defmodule AOC2023.D08 do
     File.read!("input/d08.txt")
   end
 
-  def match(<<k1, k2, k3, " = (", l1, l2, l3, ", ", r1, r2, r3, ")">>),
-    do: {<<k1, k2, k3>>, {<<l1, l2, l3>>, <<r1, r2, r3>>}}
+  def match(<<k::binary-size(3), " = (", l::binary-size(3), ", ", r::binary-size(3), ")">>),
+    do: {k, {l, r}}
 
+  @spec parse(binary()) :: {[binary()], map()}
   def parse(input) do
     [pattern, map] = String.split(input, "\n\n", trim: true, parts: 2)
 
@@ -29,53 +30,21 @@ defmodule AOC2023.D08 do
     }
   end
 
-  def walk_part1({instructions, map}), do: walk_part1({instructions, map}, instructions, "AAA", 0)
-
-  def walk_part1({instructions, map}, [], current, step) do
-    walk_part1({instructions, map}, instructions, current, step)
-  end
-
-  def walk_part1(_, _, "ZZZ", step), do: {:ok, step}
-
-  def walk_part1({instructions, map}, [next | rest], current, step) do
+  def step({{instructions, map}, [next | rest], current, step}) do
     case {Map.get(map, current), next} do
-      {nil, _} -> {:error, step}
-      {{next, _}, "L"} -> walk_part1({instructions, map}, rest, next, step + 1)
-      {{_, next}, "R"} -> walk_part1({instructions, map}, rest, next, step + 1)
+      {{next, _}, "L"} -> {{instructions, map}, rest, next, step + 1}
+      {{_, next}, "R"} -> {{instructions, map}, rest, next, step + 1}
     end
   end
 
-  def step({instructions, map}, start),
-    do: {:next, {{instructions, map}, instructions, start, 0}}
-
-  def step({:next, {{instructions, map}, [next | rest], current, step}}) do
-    case {Map.get(map, current), next} do
-      {{next, _}, "L"} -> {:next, {{instructions, map}, rest, next, step + 1}}
-      {{_, next}, "R"} -> {:next, {{instructions, map}, rest, next, step + 1}}
-    end
+  def step({{instructions, map}, [], current, step}) do
+    step({{instructions, map}, instructions, current, step})
   end
 
-  def step({:next, {{instructions, map}, [], current, step}}) do
-    step({:next, {{instructions, map}, instructions, current, step}})
-  end
-
-  def part1(input) do
-    input
-    |> parse()
-    |> walk_part1()
-    |> case do
-      {:ok, step} -> step
-      _ -> 0
-    end
-  end
-
-  def loop({:next, {{instructions, map}, path, current, step}}) do
+  def walk({_, _, current, iteration} = state) do
     case current do
-      <<_, _, "Z">> ->
-        step
-
-      _ ->
-        loop(step({:next, {{instructions, map}, path, current, step}}))
+      <<_, _, "Z">> -> iteration
+      _ -> walk(step(state))
     end
   end
 
@@ -85,6 +54,14 @@ defmodule AOC2023.D08 do
 
   def lcm(0, 0), do: 0
   def lcm(a, b), do: floor(a * b / gcd(a, b))
+
+  def part1(input) do
+    {instructions, map} =
+      input
+      |> parse()
+
+    walk({{instructions, map}, [], "AAA", 0})
+  end
 
   def part2(input) do
     {instructions, map} =
@@ -97,11 +74,11 @@ defmodule AOC2023.D08 do
       <<_, _, "A">> -> true
       <<_, _, _>> -> false
     end)
-    |> Enum.map(fn start -> step({instructions, map}, start) end)
-    # Manual discovery was made: the input data ensures that each path is a loop that starts and ends at the same point.
-    |> Enum.map(&loop/1)
+    |> Enum.map(fn start -> {{instructions, map}, [], start, 0} end)
+    # Manual discovery was made: the input data ensures that each path is a walk that starts
+    # and ends at the same point and with the same state.
+    |> Enum.map(&walk/1)
+    # So we only need to find the least common multiple of all paths
     |> Enum.reduce(&lcm/2)
-
-    # |> loop()
   end
 end

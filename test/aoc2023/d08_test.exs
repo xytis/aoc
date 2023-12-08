@@ -31,6 +31,12 @@ defmodule AOC2023.D08Test do
     assert AOC2023.D08.part2(@test_p2) == 6
   end
 
+  test "on real data" do
+    input = AOC2023.D08.read_input()
+    assert AOC2023.D08.part1(input) == 14257
+    assert AOC2023.D08.part2(input) == 16_187_743_689_077
+  end
+
   test "internals" do
     assert AOC2023.D08.match("AAA = (BBB, BBB)") == {"AAA", {"BBB", "BBB"}}
 
