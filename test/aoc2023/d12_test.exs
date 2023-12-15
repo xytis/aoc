@@ -44,4 +44,18 @@ defmodule AOC2023.D12Test do
 
     assert AOC2023.D12.count_valid(["?", "?", ".", "?", "?", ".", "#"], [1, 1, 1]) == 4
   end
+
+  test "long" do
+    assert AOC2023.D12.parse("?###???????? 3,2,1", 5)
+           |> Enum.map(fn {springs, pools} ->
+             {_, count} = AOC2023.D12.count_valid(%{}, springs, pools)
+             count
+           end) == [506_250]
+
+    assert AOC2023.D12.parse("????? 1,2", 40)
+           |> Enum.map(fn {springs, pools} ->
+             {_, count} = AOC2023.D12.count_valid(%{}, springs, pools)
+             count
+           end) == [114_556_848_244_965_165_743_109_806_892_471]
+  end
 end
