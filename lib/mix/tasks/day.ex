@@ -1,5 +1,9 @@
 defmodule Mix.Tasks.Day do
-  @moduledoc "The hello mix task: `mix help hello`"
+  @moduledoc """
+  Advent of Code `day` task
+
+  This task creates a new day template in the current year.
+  """
   use Mix.Task
 
   @year "aoc2023"
@@ -35,6 +39,12 @@ defmodule Mix.Tasks.Day do
     Mix.Generator.copy_template(
       "lib/mix/tasks/source/day_test.exs.heex",
       "test/#{@year}/#{file_name}_test.exs",
+      name: module_name
+    )
+
+    Mix.Generator.copy_template(
+      "lib/mix/tasks/source/day_bench.exs.heex",
+      "bench/#{@year}/#{file_name}_bench.exs",
       name: module_name
     )
 

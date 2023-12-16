@@ -1,0 +1,14 @@
+defmodule AOC2023.<%= @name %>Bench do
+  use Benchfella
+
+  @bench_data <<"""
+  """>>
+
+  bench "part1 on test data" do
+    AOC2023.<%= @name %>.part1(@bench_data)
+  end
+
+  bench "part2 on test data" do
+    AOC2023.<%= @name %>.part2(@bench_data)
+  end
+end

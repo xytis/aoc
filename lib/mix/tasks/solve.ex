@@ -1,5 +1,14 @@
 defmodule Mix.Tasks.Solve do
-  @moduledoc "The hello mix task: `mix help hello`"
+  @moduledoc """
+  Advent of Code `solve` task
+
+  This task solves the current day, specified day or all days.
+  Usage:
+
+        mix solve
+        mix solve all
+        mix solve 1
+  """
   use Mix.Task
 
   def run(args) do

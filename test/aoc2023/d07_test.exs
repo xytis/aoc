@@ -21,10 +21,15 @@ defmodule AOC2023.D07Test do
   end
 
   test "internals" do
-    assert AOC2023.D07.parse("32T3K 765") == {[:one_pair, :_3, :_2, :_T, :_3, :_K], 765}
-    assert AOC2023.D07.parse("T55J5 684") == {[:three_of_a_kind, :_T, :_5, :_5, :_J, :_5], 684}
-    assert AOC2023.D07.parse("KK677 28") == {[:two_pairs, :_K, :_K, :_6, :_7, :_7], 28}
-    assert AOC2023.D07.parse("KTJJT 220") == {[:two_pairs, :_K, :_T, :_J, :_J, :_T], 220}
-    assert AOC2023.D07.parse("QQQJA 483") == {[:three_of_a_kind, :_Q, :_Q, :_Q, :_J, :_A], 483}
+    assert AOC2023.D07.parse_part1("32T3K 765") == {[:one_pair, :_3, :_2, :_T, :_3, :_K], 765}
+
+    assert AOC2023.D07.parse_part1("T55J5 684") ==
+             {[:three_of_a_kind, :_T, :_5, :_5, :_J, :_5], 684}
+
+    assert AOC2023.D07.parse_part1("KK677 28") == {[:two_pairs, :_K, :_K, :_6, :_7, :_7], 28}
+    assert AOC2023.D07.parse_part1("KTJJT 220") == {[:two_pairs, :_K, :_T, :_J, :_J, :_T], 220}
+
+    assert AOC2023.D07.parse_part1("QQQJA 483") ==
+             {[:three_of_a_kind, :_Q, :_Q, :_Q, :_J, :_A], 483}
   end
 end

@@ -24,3 +24,9 @@ d01-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/
+
+# Generated benchmark snapshots
+/bench/snapshots/
+
+# Generated benchmark graphs
+/bench/graphs/

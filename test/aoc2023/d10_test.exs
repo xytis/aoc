@@ -74,7 +74,7 @@ defmodule AOC2023.D10Test do
       {0, 4} => {:ground},
       {1, 0} => {:ground},
       {1, 2} => {"N", "S"},
-      {1, 3} => {"N", "E"},
+      {1, 3} => {"E", "N"},
       {1, 4} => {:ground},
       {2, 0} => {:ground},
       {2, 1} => {"E", "W"},
@@ -95,7 +95,7 @@ defmodule AOC2023.D10Test do
 
     assert AOC2023.D10.parse(@test_simple) == map
 
-    {start, map} = AOC2023.D10.extract_start(map)
+    {_, map} = AOC2023.D10.extract_start(map)
 
     [_ | south] = AOC2023.D10.walk(map, [{{1, 1}, "S", []}])
     [_ | east] = AOC2023.D10.walk(map, [{{1, 1}, "E", []}])
@@ -105,28 +105,28 @@ defmodule AOC2023.D10Test do
   end
 
   test "fill generation" do
-    assert AOC2023.D10.generate_exits("|", {"N", {"I", "O"}}) == [
-             {"E", {"O", "O"}},
-             {"S", {"I", "O"}},
-             {"W", {"I", "I"}}
+    assert AOC2023.D10.generate_exits({"N", "S"}, {{0, 0}, {"N", {"I", "O"}}}) == [
+             {{1, 0}, {"W", {"O", "O"}}},
+             {{0, 1}, {"N", {"I", "O"}}},
+             {{-1, 0}, {"E", {"I", "I"}}}
            ]
 
-    assert AOC2023.D10.generate_exits("|", {"E", {"I", "I"}}) == [
-             {"S", {"O", "I"}},
-             {"W", {"O", "O"}},
-             {"N", {"O", "I"}}
+    assert AOC2023.D10.generate_exits({"N", "S"}, {{0, 0}, {"E", {"I", "I"}}}) == [
+             {{0, 1}, {"N", {"O", "I"}}},
+             {{-1, 0}, {"E", {"O", "O"}}},
+             {{0, -1}, {"S", {"O", "I"}}}
            ]
 
-    assert AOC2023.D10.generate_exits("|", {"S", {"I", "O"}}) == [
-             {"W", {"I", "I"}},
-             {"N", {"I", "O"}},
-             {"E", {"O", "O"}}
+    assert AOC2023.D10.generate_exits({"N", "S"}, {{0, 0}, {"S", {"I", "O"}}}) == [
+             {{-1, 0}, {"E", {"I", "I"}}},
+             {{0, -1}, {"S", {"I", "O"}}},
+             {{1, 0}, {"W", {"O", "O"}}}
            ]
 
-    assert AOC2023.D10.generate_exits("|", {"W", {"I", "I"}}) == [
-             {"N", {"I", "O"}},
-             {"E", {"O", "O"}},
-             {"S", {"I", "O"}}
+    assert AOC2023.D10.generate_exits({"N", "S"}, {{0, 0}, {"W", {"I", "I"}}}) == [
+             {{0, -1}, {"S", {"I", "O"}}},
+             {{1, 0}, {"W", {"O", "O"}}},
+             {{0, 1}, {"N", {"I", "O"}}}
            ]
   end
 
