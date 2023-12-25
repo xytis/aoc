@@ -1,3 +1,10 @@
 %{
   "benchfella": {:hex, :benchfella, "0.3.5", "b2122c234117b3f91ed7b43b6e915e19e1ab216971154acd0a80ce0e9b8c05f5", [:mix], [], "hexpm", "23f27cbc482cbac03fc8926441eb60a5e111759c17642bac005c3225f5eb809d"},
+  "coerce": {:hex, :coerce, "1.0.1", "211c27386315dc2894ac11bc1f413a0e38505d808153367bd5c6e75a4003d096", [:mix], [], "hexpm", "b44a691700f7a1a15b4b7e2ff1fa30bebd669929ac8aa43cffe9e2f8bf051cf1"},
+  "extractable": {:hex, :extractable, "0.2.1", "cf32f0cf2328c073505be285fedecbc984a4f5fec300370dc9c6125bf4d99975", [:mix], [], "hexpm", "42532209510e365c3c9a56c33a2b5448ab1645c0ae124f261162f2c166061019"},
+  "insertable": {:hex, :insertable, "0.2.0", "f9ef5e484d1cc0756f1d248a54466aa6388142a81df18f588158e3eda2501395", [:mix], [], "hexpm", "518a8b5870344c784dec4560a296e3ef539cd08e58df7f425485bb6158ab70d6"},
+  "matrix_operation": {:hex, :matrix_operation, "0.5.0", "82f33f2ef419c3cf3a42dac65eeacf4666708ab9d868cf1c15b4ce742e40a9b8", [:mix], [], "hexpm", "7f2591221077d5d0f920278b1e727aebaeb9a14e726cd9f02aa1cf56ba06da90"},
+  "memoize": {:hex, :memoize, "1.4.2", "cc289c7f1b86a37e7278180aa382bdc8935e8280cbf41659482d29d843bcd16d", [:mix], [], "hexpm", "daabbbf763b07bc2a2aedba6c87945cbc3d9100e46cfa651923a81e098adbcfa"},
+  "numbers": {:hex, :numbers, "5.2.4", "f123d5bb7f6acc366f8f445e10a32bd403c8469bdbce8ce049e1f0972b607080", [:mix], [{:coerce, "~> 1.0", [hex: :coerce, repo: "hexpm", optional: false]}, {:decimal, "~> 1.9 or ~> 2.0", [hex: :decimal, repo: "hexpm", optional: true]}], "hexpm", "eeccf5c61d5f4922198395bf87a465b6f980b8b862dd22d28198c5e6fab38582"},
+  "tensor": {:hex, :tensor, "2.1.2", "2f0569f922300e5fa09128481b9da418190e9f11c701d3777c4d0f60eac12806", [:mix], [{:extractable, "~> 0.2.0", [hex: :extractable, repo: "hexpm", optional: false]}, {:fun_land, "~> 0.9.0", [hex: :fun_land, repo: "hexpm", optional: true]}, {:insertable, "~> 0.2.0", [hex: :insertable, repo: "hexpm", optional: false]}, {:numbers, "~> 5.0", [hex: :numbers, repo: "hexpm", optional: false]}], "hexpm", "edc770c9e32fcf9c50e14808541dcba226370b0fec7276c4f551b5ea910dbdbc"},
 }

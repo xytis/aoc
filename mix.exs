@@ -26,6 +26,11 @@ defmodule AOC2023.MixProject do
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
-    [{:benchfella, "~> 0.3.0", only: :bench}]
+    [
+      {:benchfella, "~> 0.3.0", only: :bench},
+      {:memoize, "~> 1.4"},
+      {:tensor, "~> 2.0"},
+      {:matrix_operation, "~> 0.5"}
+    ]
   end
 end
