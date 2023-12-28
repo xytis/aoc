@@ -4,15 +4,10 @@ defmodule AOC2023.D18 do
   """
 
   def solve() do
-    # IO.puts("Day 18")
+    IO.puts("Day 18")
     input = read_input()
-    # IO.puts("Part 1: #{part1(input)}")
-    # IO.puts("Part 2: #{part2(input)}")
-
-    input
-    |> parse_2()
-    |> to_svg()
-    |> IO.write()
+    IO.puts("Part 1: #{part1(input)}")
+    IO.puts("Part 2: #{part2(input)}")
   end
 
   def read_input() do
@@ -53,16 +48,7 @@ defmodule AOC2023.D18 do
 
   def part2(input) do
     input
-    |> String.split("\n", trim: true)
-    |> Enum.reverse()
-    |> Enum.join("\n")
     |> parse_2()
-    # |> Enum.map(fn {x, y} ->
-    #   "#{Float.to_string((x + 40_000_000) / 1_00_000)},#{Float.to_string((y + 40_000_000) / 1_00_000)}"
-    # end)
-    # |> Enum.join(" ")
-    # |> IO.write()
-
     |> polygon_area()
   end
 
@@ -83,14 +69,14 @@ defmodule AOC2023.D18 do
   def vertexize(instructions) do
     {vertices, _} =
       instructions
-      |> Enum.chunk_every(2, 1, [{"X", 0}])
+      |> Enum.chunk_every(2, 1, [List.first(instructions)])
       |> Enum.map(fn [{a_dir, a_length}, {b_dir, _}] ->
         {a_dir, a_length, offset(a_dir, b_dir)}
       end)
-      |> Enum.reduce({[], {0, 0}}, fn {dir, length, _offset}, {vertices, coords} ->
+      |> Enum.reduce({[], {0, 0}}, fn {dir, length, offset}, {vertices, coords} ->
         next = to_vector(dir, length) |> add(coords)
-        # vertex = next |> add(offset)
-        {vertices ++ [next], next}
+        vertex = next |> add(offset)
+        {vertices ++ [vertex], next}
       end)
 
     vertices
@@ -136,8 +122,6 @@ defmodule AOC2023.D18 do
       {"L", "U"} -> {0, 1}
       {"D", "R"} -> {1, 0}
       {"D", "L"} -> {1, 1}
-      # used by last point
-      {_, "X"} -> {0, 0}
     end
   end
 

@@ -67,10 +67,26 @@ defmodule AOC2023.D18Test do
                  |> Enum.join("\n")
                  |> IO.inspect()
 
-  # ##########
-  # #~~~~~~~~#
-  # #~~~~~~~~#
-  # ##########
+  @test_one_line <<"""
+                   R 4 (#70c710)
+                   D 5 (#0dc571)
+                   L 2 (#5713f0)
+                   U 2 (#d2c081)
+                   R 1 (#59c680)
+                   U 2 (#411b91)
+                   L 2 (#8ceee2)
+                   D 4 (#caa173)
+                   L 1 (#7807d2)
+                   U 5 (#a77fa3)
+                   """>>
+
+  @test_left_first <<"""
+                     L 2 (#70c710)
+                     U 3 (#0dc571)
+                     R 2 (#5713f0)
+                     D 3 (#d2c081)
+                     """>>
+
   test "part1 on test data" do
     assert AOC2023.D18.part1(@test_p1) == 62
   end
@@ -93,6 +109,14 @@ defmodule AOC2023.D18Test do
 
   test "part1 on inverted data" do
     assert AOC2023.D18.part1(@test_inverted) == 30
+  end
+
+  test "part1 on one line data" do
+    import AOC2023.D18
+
+    assert part1(@test_one_line) == 29
+
+    assert part1(@test_left_first) == 12
   end
 
   test "internals" do
