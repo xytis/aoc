@@ -53,7 +53,7 @@ defmodule AOC2023.D19 do
     end
 
     defimpl Step, for: SureStep do
-      def apply(%SureStep{} = step, %Part{} = part) do
+      def apply(%SureStep{} = step, %Part{} = _part) do
         step.next
       end
     end

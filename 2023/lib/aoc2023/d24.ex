@@ -29,7 +29,6 @@ defmodule AOC2023.D24 do
   end
 
   defmodule Line do
-    alias Tensor.Vector
     defstruct [:p1, :p2]
 
     @epsilon 0.00001
@@ -55,6 +54,8 @@ defmodule AOC2023.D24 do
     end
 
     def project_xy(%__MODULE__{} = line) do
+      use Tensor
+
       %__MODULE__{
         p1: Vector.new([line.p1[0], line.p1[1], 0]),
         p2: Vector.new([line.p2[0], line.p2[1], 0])
@@ -184,6 +185,8 @@ defmodule AOC2023.D24 do
     end
 
     def intersect_within?(%__MODULE__{} = l1, %__MODULE__{} = l2, %Box{} = box) do
+      alias Tensor.Vector
+
       mu = [
         [l1.v[0], -l2.v[0]],
         [l1.v[1], -l2.v[1]]
@@ -203,7 +206,6 @@ defmodule AOC2023.D24 do
 
         {_, nil} ->
           false
-          alias Tensor.Vector
 
         {a, b} when a > 0 and b > 0 ->
           p = Vector.add(l1.p, Vector.mult(l1.v, a))
@@ -231,6 +233,7 @@ defmodule AOC2023.D24 do
     lines =
       parse(input)
       |> Enum.map(fn line -> VectorLine.project_xy(line) end)
+      |> IO.inspect()
 
     alias Tensor.Vector
 

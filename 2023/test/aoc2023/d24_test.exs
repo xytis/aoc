@@ -22,6 +22,13 @@ defmodule AOC2023.D24Test do
     assert AOC2023.D24.part2(@test_p2) == 0
   end
 
+  test "tensor" do
+    use Tensor
+    a = Vector.new([1, 2, 3])
+    b = Vector.new([1, 2, 3])
+    assert a == b
+  end
+
   test "internals" do
     import AOC2023.D24
     import Tensor
