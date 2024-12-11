@@ -4,7 +4,7 @@ import ArrayKeyedMap from "array-keyed-map";
 
 // const input = readCoordMap("test1.txt")
 // const input = readCoordMap("input.txt")
-const input = readCoordMap("input2.txt")
+const input = readCoordMap("testmax.txt")
 
 const WALL = '#'
 const OBSTRUCTION = 'O'
