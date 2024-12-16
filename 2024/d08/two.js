@@ -1,14 +1,7 @@
 import {printCoordMap, readCoordMapAndBounds} from "../lib/read.js";
+import {gcd} from "../lib/math.js";
 
 const pairs = (arr) => arr.map( (v, i) => arr.slice(i + 1).map(w => [v, w]) ).flat();
-
-var gcd = function(a, b) {
-    if (!b) {
-        return a;
-    }
-
-    return gcd(b, a % b);
-}
 
 function calculateAntinodes([[x1, y1], [x2, y2]]) {
     // Get the line vector:

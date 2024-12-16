@@ -7,7 +7,7 @@ const branches = new Map(input.map(e => [e, 1]));
 let prev = branches;
 
 for (let i = 0; i < 75; i++) {
-    console.log("iter", i, "size", prev.size, "max", [...prev.keys()].sort((a, b) => b-a)[0]);
+    // console.log("iter", i, "size", prev.size, "max", [...prev.keys()].sort((a, b) => b-a)[0]);
     const curr = new Map();
     prev.forEach((count, number) => {
         if (number === 0) {
