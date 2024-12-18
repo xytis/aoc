@@ -61,3 +61,25 @@ export function printCoordMap(m, conv) {
     }
     console.log();
 }
+
+export function printAnyGrid(get) {
+    let y = 0;
+    let x = 0;
+    let line = [];
+    while (true) {
+        let el = get([x, y])
+        if (!el) {
+            y = y + 1;
+            x = 0;
+            console.log(line.join(''))
+            line = [];
+            el = get([x, y])
+        }
+        if (!el) {
+            break;
+        }
+        x = x + 1;
+        line.push(el);
+    }
+    console.log();
+}
