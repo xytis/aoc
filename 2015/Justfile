@@ -1,0 +1,2 @@
+run part:
+	cd {{invocation_directory()}} && ghc --make {{part}} && ./{{part}} && rm {{part}} {{part}}.o {{part}}.hi
