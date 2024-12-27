@@ -1,6 +1,5 @@
 import {printCoordMap, readCoordMapAndBounds} from "../lib/read.js";
-
-const pairs = (arr) => arr.map( (v, i) => arr.slice(i + 1).map(w => [v, w]) ).flat();
+import {pairs} from "../lib/utils.js";
 
 function calculateAntinodes([[x1, y1], [x2, y2]]) {
     return [[x1-(x2-x1), y1-(y2-y1)], [x2+(x2-x1), y2+(y2-y1)]]

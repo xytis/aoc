@@ -180,4 +180,13 @@ function branch(number, s, goal) {
     return false;
 }
 
-console.log(branch(0, 0, program));
+branch(0, 0, program);
+
+
+// for (let a = 0; a < 8; a++) {
+//     for (let b = 0; b < 8; b++) {
+//         const num = parseInt(`${a}${b}`, 8)
+//         compute(num);
+//         console.log(num.toString(2).padStart(6, '0'), output.join(''));
+//     }
+// }

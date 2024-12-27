@@ -2,7 +2,7 @@ import {readCoordMap} from "../lib/read.js";
 import ArrayKeyedMap from "array-keyed-map";
 import {next} from "../lib/coords.js";
 
-const world = readCoordMap("input2.txt");
+const world = readCoordMap("input-kk.txt");
 
 function extractRegion(coords, plant, region) {
     if (world.get(coords) === plant) {

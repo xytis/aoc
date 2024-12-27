@@ -1,4 +1,4 @@
-import fs from "fs";
+import fs from "node:fs";
 
 import ArrayKeyedMap from "array-keyed-map"
 
@@ -10,7 +10,9 @@ export function readLines(name) {
     const fileContents = read(name)
 
     const lines = fileContents.split('\n')
-    lines.pop()
+    if (lines[lines.length - 1].trim().length === 0) {
+        lines.pop()
+    }
     return lines;
 }
 
@@ -24,6 +26,17 @@ export function readCoordMap(name) {
         }
     }
     return res;
+}
+
+export function scanCoordMap(name, scan, acc) {
+    const lines = readLines(name)
+    const symbols = lines.map(l => l.split(''))
+    for (let y = 0, H = symbols.length; y < H; y++) {
+        for (let x = 0, W = symbols[y].length; x < W; x++) {
+            scan(acc, [x, y], symbols[y][x])
+        }
+    }
+    return acc;
 }
 
 export function readCoordMapAndBounds(name) {

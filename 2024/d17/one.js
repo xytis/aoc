@@ -1,5 +1,4 @@
 import {read} from "../lib/read.js";
-import {gcd, lcm} from "../lib/math.js";
 
 const input = read('input.txt')
 
