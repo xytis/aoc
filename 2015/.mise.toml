@@ -1,2 +1,10 @@
 [tools]
-haskell = "latest"
+ghc = "latest"
+cabal = "latest"
+
+[alias]
+cabal = "asdf:sestrella/asdf-ghcup"
+ghc = "asdf:sestrella/asdf-ghcup"
+stack = "asdf:sestrella/asdf-ghcup"
+hls = "asdf:sestrella/asdf-ghcup"
+
