@@ -1,0 +1,19 @@
+cabal-version:   3.12
+name:            d08
+version:         0.1.0.0
+license:         NONE
+author:          Unknown
+maintainer:      Unknown
+build-type:      Simple
+extra-doc-files: CHANGELOG.md
+
+common warnings
+    ghc-options: -Wall
+
+executable d08
+    import:           warnings
+    main-is:          Main.hs
+    build-depends:    base ^>=4.20.0.0
+                    , bytestring
+    hs-source-dirs:   app
+    default-language: Haskell2010

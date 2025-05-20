@@ -9,6 +9,7 @@ import Control.Monad.Trans.State.Lazy
 import Data.Bits (complement, shiftL, shiftR, (.&.), (.|.))
 import Data.Either
 import Data.HashMap.Lazy as H
+import Data.Maybe (fromMaybe)
 import qualified Text.Parsec as P
 import qualified Text.Parsec.Char as C
 import Text.Parsec.String (Parser)
@@ -137,6 +138,13 @@ part1 input =
   let m = H.fromList $ parse input
    in evalStateT (resolve "a" m) H.empty
 
+part2 :: String -> Maybe Int
+part2 input =
+  let m = H.fromList $ parse input
+      p1 = fromMaybe 0 $ evalStateT (resolve "a" m) H.empty
+      m' = H.insert "b" (Val (Signal p1)) m
+   in evalStateT (resolve "a" m') H.empty
+
 check :: String -> String
 check input =
   let m = H.fromList $ parse input
@@ -172,4 +180,4 @@ main :: IO ()
 main = do
   input <- readFile "input.txt"
   print $ part1 input
-  return ()
+  print $ part2 input
