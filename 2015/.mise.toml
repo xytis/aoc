@@ -1,5 +1,5 @@
 [tools]
-ghc = "latest"
+ghc = "9.10"
 cabal = "latest"
 
 [alias]
