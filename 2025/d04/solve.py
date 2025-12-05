@@ -75,7 +75,6 @@ print(sum(r.values()))
 g = grid('input.txt')
 
 minc, maxc = bounds(g)
-print(minc, maxc)
 removed = []
 
 from PIL import Image, ImageDraw
