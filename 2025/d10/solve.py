@@ -62,41 +62,40 @@ def reductions(at, buttons):
         res.append(reduce(at, b))
     return res
 
-from heapq import heappush, heappop
+import numpy as np
+from scipy.optimize import linprog
 
-def solve2(start, buttons):
-    solved = lambda t: all(map(lambda e: e == 0, t))
-    valid = lambda t: all(map(lambda e: e >= 0, t))
-    score = lambda t: sum(t)
-    queue = []
-    heappush(queue, (score(start), start, 0))
-    seen = {start}
-    it = 0
-    while len(queue) > 0:
-        it = it + 1
-        if it % 1000 == 0:
-            print("space", len(seen))
-            print("at", at)
-        (s, at, cost) = heappop(queue)
-        #print(s, at)
-        # Prefer most impactful buttons first:
-        buttons = sorted(buttons, key=lambda e: sum(at[i] for i in e), reverse=True)
-        for v in reductions(at, buttons):
-            if solved(v):
-                return cost+1
-            if valid(v) and v not in seen:
-                seen.add(v)
-                heappush(queue, (score(v), v, cost+1))
+def solve2(target, buttons):
+    # convert buttons into vectors
+    vecs = []
+    for b in buttons:
+        l = [0] * len(target)
+        for i in b:
+            l[i] = 1
+        vecs.append(np.array(l))
+    c = [1] * len(buttons)
+    A_eq = np.vstack(vecs).T
+    target = np.array(target)
+
+    result = linprog(
+        c,
+        A_eq=A_eq,
+        b_eq=target,
+        bounds=(0, None),
+        integrality=1,
+        #method='highs'
+    )
+    return int(result.fun)
 
 
-with open('thick.txt', 'r') as file:
+with open('input.txt', 'r') as file:
     solutions1 = []
     solutions2 = []
     for line in file:
         t1, b, t2 = parse(line.strip())
-        (cost1, path) = solve1(t1, b)
+        (cost1, _) = solve1(t1, b)
         cost2 = solve2(t2, b)
-        print('SOLVED', t2, cost2)
+        #print('SOLVED', t2, cost2)
         solutions1.append(cost1)
         solutions2.append(cost2)
     print(sum(solutions1))
